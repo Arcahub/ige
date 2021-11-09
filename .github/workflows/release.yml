@@ -264,8 +264,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ige_ubuntu_x86_64-${{ github.event.inputs.version }}.tar.gz
-          asset_name: ubuntu.tar.gz
+          asset_name: ige_ubuntu_x86_64-${{ github.event.inputs.version }}.tar.gz
+          asset_path: ubuntu.tar.gz
           asset_content_type: application/zip
 
       # - name: "Upload epitest release files"
