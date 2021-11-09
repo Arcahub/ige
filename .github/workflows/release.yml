@@ -225,9 +225,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: windows_build
-          path: |
-            ige/include
-            build/linux/x86_64/release/libige.a
+          path: tar.exe -zcvf windows.zip -C ige include/ -C ../build/linux/x86_64/release libige.a
 
   release:
     needs: [build-ubuntu, build-windows]
@@ -285,6 +283,6 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_name: ige_windows_x64-${{ github.event.inputs.version }}.zip
-          asset_path: windows_build.exe
+          asset_path: windows.zip
           asset_content_type: application/zip
 
