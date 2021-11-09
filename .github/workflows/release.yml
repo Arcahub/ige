@@ -240,7 +240,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.major }}.${{ github.event.inputs.minor }}.${{ github.event.inputs.patch }}
+          tag_name: ${{ github.event.inputs.version }}
           release_name: Release ${{ github.event.inputs.version }}
 
       - name: Download ubuntu artifact
