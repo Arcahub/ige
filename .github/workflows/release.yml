@@ -220,14 +220,19 @@ jobs:
       - name: Test
         run: xmake test
 
+      - name: ls
+        run: ls -R
+
+      # Compress artifact
+      - name: Compress artifact
+        run: tar.exe -a -c -f windows.zip -C ige include -C ../build/windows/x64/release ige.lib
+
       # Push artifact
       - name: Push artifact
         uses: actions/upload-artifact@v2
         with:
           name: windows_build
-          path: |
-            ige/include
-            build/linux/x86_64/release/libige.a
+          path: windows.zip
 
   release:
     needs: [build-ubuntu, build-windows]
@@ -285,6 +290,6 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_name: ige_windows_x64-${{ github.event.inputs.version }}.zip
-          asset_path: windows_build.exe
+          asset_path: windows.zip
           asset_content_type: application/zip
 
